@@ -50,12 +50,12 @@ class HashMap:
 
 
 
-h = HashMap()
-h.put(51,'253335')
-h.put(67,'45653')
-h.put(41,'74564')
-h.put(41,'425')
-h.print()
-h.remove(41)
-h.print()
-print('Hello, are you looking for package #{}'.format(h.get(67)))
+#h = HashMap()
+#h.put(51,'253335')
+#h.put(67,'45653')
+#h.put(41,'74564')
+#h.put(41,'425')
+#h.print()
+#h.remove(41)
+#h.print()
+#print('Hello, are you looking for package #{}'.format(h.get(67)))
