@@ -1,34 +1,65 @@
 from HashMap import HashMap
 from Graph import Graph
 from Package import Package
+from Truck import Truck
+import Reader
 import csv
 
 if __name__ == '__main__':
-    packages = HashMap()  # Create HashMap object to hold packages we are about to read from the packagefile.csv
-    with open('WGUPS Package File.csv') as csvfile:  # Read each from the csv limiting it to the first 8 columns
-        reader = csv.reader(csvfile)
-        rows = list(reader)
-        rows = rows[8:]
+    packages = Reader.read_packages('WGUPS Package File.csv')
+    Reader.get_locations('WGUPS Distance Table.csv')
+    locations = Reader.get_locations('WGUPS Distance Table.csv')
+    print(locations)
+    Reader.get_distances('WGUPS Distance Table.csv')
 
-        for row in rows:  # for each row in the csv file, take the column values and place into package object
-            temp = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
-            packages.put(temp.get_id(), temp)  # place package object into HashMap object
-            # packages.get(temp.get_id()).print_package()
 
-    with open('WGUPS Distance Table.csv') as distancefile:
-        reader = csv.reader(distancefile)
-        rows = list(reader)
-        rows = rows[4:]
+    # Load packages manually into truck 1; packages that need to delivery early
+    truck_one = Truck()
+    truck_one.add_package(packages.get(1))
+    truck_one.add_package(packages.get(2))
+    truck_one.add_package(packages.get(4))
+    truck_one.add_package(packages.get(13))
+    truck_one.add_package(packages.get(14))
+    truck_one.add_package(packages.get(15))
+    truck_one.add_package(packages.get(16))
+    truck_one.add_package(packages.get(19))
+    truck_one.add_package(packages.get(20))
+    truck_one.add_package(packages.get(29))
+    truck_one.add_package(packages.get(30))
+    truck_one.add_package(packages.get(31))
+    truck_one.add_package(packages.get(34))
+    truck_one.add_package(packages.get(37))
+    truck_one.add_package(packages.get(40))
+    truck_one.add_package(packages.get(21))
 
-        for row in rows:
-            print(row)
+    # Load packages manually into truck 2; packages that are delayed or only for truck 2
+    truck_two = Truck()
+    truck_two.add_package(packages.get(3))
+    truck_two.add_package(packages.get(18))
+    truck_two.add_package(packages.get(25))
+    truck_two.add_package(packages.get(6))
+    truck_two.add_package(packages.get(28))
+    truck_two.add_package(packages.get(32))
+    truck_two.add_package(packages.get(36))
+    truck_two.add_package(packages.get(38))
+    truck_two.add_package(packages.get(5))
+    truck_two.add_package(packages.get(7))
+    truck_two.add_package(packages.get(8))
+    truck_two.add_package(packages.get(10))
+    truck_two.add_package(packages.get(11))
+    truck_two.add_package(packages.get(12))
+    truck_two.add_package(packages.get(17))
+    truck_two.add_package(packages.get(22))
 
-        locations = Graph()  # Create undirected graph object
+    # Load packages manually into truck 3; packages that are wrong address and others
+    truck_three = Truck()
+    truck_three.add_package(packages.get(9))  # Wrong address; change to '410 S State St, Salt Lake City, UT, 84111' @ 10:20AM
+    truck_three.add_package(packages.get(23))
+    truck_three.add_package(packages.get(24))
+    truck_three.add_package(packages.get(26))
+    truck_three.add_package(packages.get(27))
+    truck_three.add_package(packages.get(33))
+    truck_three.add_package(packages.get(35))
+    truck_three.add_package(packages.get(39))
 
-        for row in range(1, 28):
-            column = 2
-            while float(rows[row][column]) != 0.0:
-                locations.add_undirected_edge(rows[row][0], rows[0][column], float(rows[row][column]))
-                column += 1
 
-        locations.print_contents()
