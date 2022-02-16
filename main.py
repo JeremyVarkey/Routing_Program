@@ -1,16 +1,14 @@
 from HashMap import HashMap
-from Graph import Graph
 from Package import Package
 from Truck import Truck
 import Reader
-import csv
 
 if __name__ == '__main__':
     packages = Reader.read_packages('WGUPS Package File.csv')
-    Reader.get_locations('WGUPS Distance Table.csv')
     locations = Reader.get_locations('WGUPS Distance Table.csv')
-    print(locations)
-    Reader.get_distances('WGUPS Distance Table.csv')
+    distances = Reader.get_distances('WGUPS Distance Table.csv')
+
+
 
 
     # Load packages manually into truck 1; packages that need to delivery early

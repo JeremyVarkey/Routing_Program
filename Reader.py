@@ -3,6 +3,12 @@ from HashMap import HashMap
 from Package import Package
 
 
+def get_distance_between(locations, distances, a, b):
+    index_a = locations.index(a)
+    index_b = locations.index(b)
+    return distances[min(index_a, index_b)][max(index_a, index_b)]
+
+
 def get_locations(file):
     locations = []
     with open(file) as distanceFile:
@@ -23,13 +29,14 @@ def get_distances(file):
         reader = csv.reader(distancefile)
         matrix = list(reader)
         matrix = matrix[5:]
-        for i in range(2, len(locations)+2):
+        for i in range(2, len(locations) + 2):
             values = []
             for j in range(len(locations)):
                 values.append(matrix[j][i])
             distances.append(values)
-
+            print(values)
     return distances
+
 
 def read_packages(file):
     packages = HashMap()  # Create HashMap object to hold packages we are about to read from the packagefile.csv

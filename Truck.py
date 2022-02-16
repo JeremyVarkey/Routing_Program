@@ -1,8 +1,10 @@
+import Reader
+
 class Truck:
 
     def __init__(self):
         self.truck = []
-        self.visited = set()
+        self.visited = set('4001 South 700 East')
         self.current = ''
         self.speed = 18
         self.mileage = 0
@@ -29,6 +31,20 @@ class Truck:
 
     def current_location(self, location):
         self.current = location
+
+    def next_location(self, locations, distances):
+        min_d = 500.00
+        next_d = ''
+        for location in locations:
+            if location not in self.visited:
+                if min_d < Reader.get_distance_between(locations, distances, self.current, location):
+                    min_d = Reader.get_distance_between(locations, distances, self.current, location)
+                    next_d = location
+
+        self.mileage += min_d
+        self.current = next_d
+        self.visited.add(self.current)
+
 
 
 
