@@ -7,30 +7,30 @@ if __name__ == '__main__':
     packages = Reader.read_packages('WGUPS Package File.csv')
     locations = Reader.get_locations('WGUPS Distance Table.csv')
     distances = Reader.get_distances('WGUPS Distance Table.csv')
+    delivered = []
 
-
-
-
-    # Load packages manually into truck 1; packages that need to delivery early
+    # Load packages manually into truck 1; packages that need to delivery early; Leave at 8AM
     truck_one = Truck()
-    truck_one.add_package(packages.get(1))
-    truck_one.add_package(packages.get(2))
-    truck_one.add_package(packages.get(4))
-    truck_one.add_package(packages.get(13))
-    truck_one.add_package(packages.get(14))
-    truck_one.add_package(packages.get(15))
-    truck_one.add_package(packages.get(16))
-    truck_one.add_package(packages.get(19))
-    truck_one.add_package(packages.get(20))
-    truck_one.add_package(packages.get(29))
-    truck_one.add_package(packages.get(30))
-    truck_one.add_package(packages.get(31))
-    truck_one.add_package(packages.get(34))
-    truck_one.add_package(packages.get(37))
-    truck_one.add_package(packages.get(40))
-    truck_one.add_package(packages.get(21))
+    truck_one.add_package(packages.get('1'))
+    truck_one.add_package(packages.get('2'))
+    truck_one.add_package(packages.get('4'))
+    truck_one.add_package(packages.get('13'))
+    truck_one.add_package(packages.get('14'))
+    truck_one.add_package(packages.get('15'))
+    truck_one.add_package(packages.get('16'))
+    truck_one.add_package(packages.get('19'))
+    truck_one.add_package(packages.get('20'))
+    truck_one.add_package(packages.get('29'))
+    truck_one.add_package(packages.get('30'))
+    truck_one.add_package(packages.get('31'))
+    truck_one.add_package(packages.get('34'))
+    truck_one.add_package(packages.get('37'))
+    truck_one.add_package(packages.get('40'))
+    truck_one.add_package(packages.get('21'))
 
-    # Load packages manually into truck 2; packages that are delayed or only for truck 2
+    truck_one.list_packages()
+
+    # Load packages manually into truck 2; packages that are delayed or only for truck 2; Leave at 9:05AM
     truck_two = Truck()
     truck_two.add_package(packages.get(3))
     truck_two.add_package(packages.get(18))
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     truck_two.add_package(packages.get(17))
     truck_two.add_package(packages.get(22))
 
-    # Load packages manually into truck 3; packages that are wrong address and others
+    # Load packages manually into truck 3; packages that are wrong address and others; Leave when a truck comes to hub
     truck_three = Truck()
     truck_three.add_package(packages.get(9))  # Wrong address; change to '410 S State St, Salt Lake City, UT, 84111' @ 10:20AM
     truck_three.add_package(packages.get(23))
@@ -60,4 +60,5 @@ if __name__ == '__main__':
     truck_three.add_package(packages.get(35))
     truck_three.add_package(packages.get(39))
 
-
+    truck_one.next_location(locations, distances)
+    delivered.append(truck_one.deliver_package())

@@ -26,6 +26,9 @@ class Package:
     def get_id(self):
         return self.id
 
+    def get_address(self):
+        return self.address
+
     def print_package(self):
         print('ID: {0} \nAddress: {1}, {2}, {3}, {4} \nWeight: {5} \nExpected Delivery: {6} \nStatus: {7}'
               .format(self.id, self.address, self.city, self.state, self.zipcode, self.weight, self.delivery_time, self.status))

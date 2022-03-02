@@ -2,11 +2,11 @@ import csv
 from HashMap import HashMap
 from Package import Package
 
-
+#  Returns double of distances between two locations
 def get_distance_between(locations, distances, a, b):
     index_a = locations.index(a)
     index_b = locations.index(b)
-    return distances[min(index_a, index_b)][max(index_a, index_b)]
+    return float(distances[min(index_a, index_b)][max(index_a, index_b)])
 
 
 def get_locations(file):
@@ -34,7 +34,6 @@ def get_distances(file):
             for j in range(len(locations)):
                 values.append(matrix[j][i])
             distances.append(values)
-            print(values)
     return distances
 
 
@@ -43,7 +42,7 @@ def read_packages(file):
     with open(file) as csvfile:  # Read each from the csv limiting it to the first 8 columns
         reader = csv.reader(csvfile)
         rows = list(reader)
-        rows = rows[8:]
+        rows = rows[5:]
 
         for row in rows:  # for each row in the csv file, take the column values and place into package object
             temp = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
