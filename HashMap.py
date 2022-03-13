@@ -46,9 +46,12 @@ class HashMap:
                     self.map[index].pop(i)
                     return True
 
+    def get_map(self):
+        return self.map
+
     def print(self):
         for i in self.map:
             if i is not None:
-                print(str(i))
+                print(i)
 
 

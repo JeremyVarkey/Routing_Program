@@ -12,7 +12,7 @@ class Package:
         self.status = 'Not Delivered.'
 
     def set_status(self, time):
-        self.status = 'Delivered at {0}.'.format(time)
+        self.status = time
 
     def set_address(self, address, city, state, zipcode):
         self.address = address

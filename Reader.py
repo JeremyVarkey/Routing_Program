@@ -47,6 +47,5 @@ def read_packages(file):
         for row in rows:  # for each row in the csv file, take the column values and place into package object
             temp = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
             packages.put(temp.get_id(), temp)  # place package object into HashMap object
-            packages.get(temp.get_id()).print_package()
 
     return packages
