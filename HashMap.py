@@ -30,7 +30,7 @@ class HashMap:
 
         if self.map[index] is not None:
             for pair in self.map[index]:
-                if pair[0] == key:
+                if int(pair[0]) == int(key):
                     return pair[1]
 
         return None
