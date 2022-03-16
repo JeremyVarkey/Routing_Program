@@ -1,14 +1,17 @@
 class HashMap:
-    # Construct
+    #  Constructor, create initial Hashamp with size of 40, unless otherwise specified
+    #  Space time complexity: O(1)
     def __init__(self, size=40):
         self.size = size
         self.map = [None] * self.size
 
-    # very simple hash function
+    #  Very simple hash function using mod of input
+    #  Space time complexity: O(1)
     def get_hash(self, key):
         return key % self.size
 
-    # put key(package ID) and value(package) into map from constructor
+    #  Put key(package ID) and value(package) into map from constructor
+    #  Space time complexity: O(N)
     def put(self, key, value):
         index = self.get_hash(int(key))  # find index to place key and value pair in HashMap
         keyValue = [key, value]  # make key value pair list
@@ -24,7 +27,8 @@ class HashMap:
             self.map[index].append(keyValue)  # if index is not empty, and no identical key is found, append to list at index
             return True
 
-    # get package based on inputted key
+    #  Get package based on inputted key, looking through chaining if needed
+    #  Space time complexity: O(N)
     def get(self, key):
         index = self.get_hash(int(key))
 
@@ -35,6 +39,8 @@ class HashMap:
 
         return None
 
+    #  Remove a package from hashmap based on specified key
+    #  Space time complexity: O(N)
     def remove(self, key):
         index = self.get_hash(key)
 
@@ -46,9 +52,13 @@ class HashMap:
                     self.map[index].pop(i)
                     return True
 
+    #  Return hashmap
+    #  Space time complexity: O(1)
     def get_map(self):
         return self.map
 
+    #  Print contents of hashmap
+    #  Space time complexity: O(1)
     def print(self):
         for i in self.map:
             if i is not None:

@@ -94,14 +94,14 @@ class Truck:
     def format_time(self, time):
         return format(datetime.timedelta(hours=time)).rsplit(':', 1)[0]
 
-    #  finds and travels to the next unvisited location
-    #  Space time complexity: O(N)
+    #  finds and travels to the next unvisited location; utilizes nearest neighbor algorithm
+    #  Space time complexity: O(N^2)
     def next_location(self, locations, distances):
         min_d = 500.00
         next_d = ''
 
-        #  for each locations in the locations list, check to see if it has been visited. If unvisited, see if it is a lower distance than the minimum distance.
-        #  Space time complexity: O(N)
+        #  Nearest Neighbor algorithm; for each locations in the locations list, check to see if it has been visited. If unvisited, see if it is a lower distance than the minimum distance.
+        #  Space time complexity: O(N^2)
         for location in locations:
             if location not in self.visited:
                 if min_d > Reader.get_distance_between(locations, distances, self.current, location):
