@@ -51,7 +51,7 @@ class HashMap:
                 if self.map[index][i][0] == key:
                     self.map[index].pop(i)
                     return True
-
+                ""
     #  Return hashmap
     #  Space time complexity: O(1)
     def get_map(self):

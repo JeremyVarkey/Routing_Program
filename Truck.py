@@ -100,7 +100,7 @@ class Truck:
         min_d = 500.00
         next_d = ''
 
-        #  Nearest Neighbor algorithm; for each locations in the locations list, check to see if it has been visited. If unvisited, see if it is a lower distance than the minimum distance.
+        #  pNearest Neighbor algorithm; for each locations in the locations list, check to see if it has been visited. If unvisited, see if it is a lower distance than the minimum distance.
         #  Space time complexity: O(N^2)
         for location in locations:
             if location not in self.visited:

@@ -1,4 +1,10 @@
-# WGU UPS C950 Jeremy Varkey #001460735
+#  WGU UPS C950 Jeremy Varkey #001460735
+
+#  The process the program goes through is first initializing the program by pulling from the CSV and cleaning the data using the Reader class
+#  From there, the program load Packages into each truck, manually
+#  Finally, the Trucks conduct their deliveries, and the "main" program reports the breakdown of miles travelled, time left, time returned, and total mileage EOD.
+#  The main program also lists each package and it's status EOD (End of Day)
+#  Finally, there is the user input portion of the code, where the user can select (1) All packages at a given time, (2) One package at a given time, or (3) End program.
 
 from HashMap import HashMap
 from Package import Package
@@ -10,6 +16,8 @@ if __name__ == '__main__':
     print('------WGU UPS Routing Program------')
     print('Running deliveries...')
     print('')
+
+    #  Load CSV data for packages(HashMap), locations (list), and finding distances between locations (matrix)
     packages = Reader.read_packages('WGUPS Package File.csv')
     locations = Reader.get_locations('WGUPS Distance Table.csv')
     distances = Reader.get_distances('WGUPS Distance Table.csv')
